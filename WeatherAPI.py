@@ -25,13 +25,18 @@ if response.status_code == 200: #=== If the server call is successful ===#
     #==print(f"Description: {data['weather'][0]['description']}")
     city = data.get("name")
     country = data.get("sys", {}).get("country")
+    description = data.get("weather", [{}])[0].get("description")
     temp = data.get("main", {}).get("temp")
     feels_like = data.get("main", {}).get("feels_like")
+    humidity = data.get("main", {}).get("humidity")
     
     # == print data ===#
     print(f"Current Weather in {city}, {country}:")
     print(f"  Temperature:     {temp}°F")
     print(f"  Feels Like:      {feels_like}°F")
+    print(f"  Humidity:        {humidity}%")
+    print(f"  Weather:         {description}:")
+    
 else:
     print(f"Failed to fetch weather data: {response.status_code}")
 
